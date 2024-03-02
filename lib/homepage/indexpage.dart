@@ -2,6 +2,10 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:navbar_router/navbar_router.dart';
 import 'package:timesheet/homepage/drawer-me.dart';
+import 'package:timesheet/homepage/viewpage/pagecaledar.dart';
+import 'package:timesheet/homepage/viewpage/pagehistory.dart';
+import 'package:timesheet/homepage/viewpage/pagehome.dart';
+import 'package:timesheet/homepage/viewpage/pageme.dart';
 import 'package:timesheet/login/login.dart';
 import 'package:timesheet/login/sigin.dart';
 
@@ -21,14 +25,14 @@ class _HomePageState extends State<HomePage> {
           Icons.home,
           size: 26,
         )),
-    NavbarItem(Icons.shopping_bag_outlined, 'Calendar',
+    NavbarItem(Icons.calendar_month_outlined, 'Calendar',
         selectedIcon: Icon(
           Icons.calendar_month_rounded,
           size: 26,
         )),
-         NavbarItem(Icons.history, 'History',
+         NavbarItem(Icons.history_outlined, 'History',
         selectedIcon: Icon(
-          Icons.person,
+          Icons.history,
           size: 26,
         )),
 
@@ -41,16 +45,16 @@ class _HomePageState extends State<HomePage> {
 
   final Map<int, Map<String, Widget>> _routes = const {
     0: {
-      '/': Login(),
+      '/': pagehome(),
     },
     1: {
-      '/': Sigin(),
+      '/': pagecaledar(),
     },
     2: {
-      '/': Login(),
+      '/': pagehistory(),
     },
      3: {
-      '/': Sigin(),
+      '/': pageme(),
     },
   };
   List<Widget> changericon(int i) {

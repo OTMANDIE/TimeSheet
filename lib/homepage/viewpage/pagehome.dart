@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
-class name extends StatelessWidget {
-  const name({super.key});
+
+class pagehome extends StatelessWidget {
+  const pagehome({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Center(
+      child: Container(
+        child: Text("home"),
+      ),
+    );
   }
 }
