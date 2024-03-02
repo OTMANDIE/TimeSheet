@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'package:circular_profile/circular_profile.dart';
 import 'package:flutter/material.dart';
 import 'package:navbar_router/navbar_router.dart';
 import 'package:timesheet/homepage/drawer-me.dart';
@@ -75,18 +76,18 @@ class _HomePageState extends State<HomePage> {
         elevation: 10,
         backgroundColor: Color.fromARGB(221, 170, 167, 167),
         title: Text("Time sheet"),
-        leading: Padding(
-          padding: const EdgeInsets.only(left: 9),
-          child: Container(
+        leading:  Container(
             padding: EdgeInsets.all(5),
             decoration: BoxDecoration(
-              border: Border.all(color: Colors.black, width: 2),
-              borderRadius: BorderRadius.circular(50),
+            
             ),
-            child: Image.asset("images/person.png"),
+            child: CircularProfile(
+              showShadow: false,
+image: NetworkImage("https://images.unsplash.com/photo-1671521277748-843a8128f7bb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyNHx8fGVufDB8fHx8&auto=format&fit=crop&w=900&q=60"),
+),
           ),
         ),
-      ),
+   
       body: NavbarRouter(
         initialIndex: 0,
         errorBuilder: (context) {

@@ -38,6 +38,7 @@ dependencies:
   navbar_router: ^0.7.3
   blinking_text: ^1.0.2
   calendar_slider: ^0.0.3
+  circular_profile: ^0.0.2
 
 dev_dependencies:
   flutter_test:
