@@ -46,7 +46,7 @@ class Login extends StatelessWidget {
                 fun: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => sigin()),
+                    MaterialPageRoute(builder: (context) => Sigin()),
                   );
                 },
               ),

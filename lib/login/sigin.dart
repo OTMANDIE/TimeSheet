@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:timesheet/weget/button_name.dart';
 import 'package:timesheet/weget/imput.dart';
 
-class sigin extends StatelessWidget {
-  const sigin({super.key});
+class Sigin extends StatelessWidget {
+  const Sigin({super.key});
 
   @override
   Widget build(BuildContext context) {

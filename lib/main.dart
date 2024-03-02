@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:timesheet/homepage/indexpage.dart';
 import 'package:timesheet/login/login.dart';
 import 'package:timesheet/login/sigin.dart';
 
@@ -14,6 +15,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        home: Login());
+        home: HomePage());
   }
 }
