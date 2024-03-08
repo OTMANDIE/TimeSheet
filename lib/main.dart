@@ -9,8 +9,8 @@ import 'weget/button_name.dart';
 import 'weget/imput.dart';
 
 void main() async{
-   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  //  WidgetsFlutterBinding.ensureInitialized();
+  // await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
@@ -19,6 +19,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        home:Auth());
+        home:HomePage());
   }
 }
