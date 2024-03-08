@@ -21,41 +21,49 @@ class _HomePageState extends State<HomePage> {
   int _currentIndex = 0;
 
   List<NavbarItem> items = [
+     NavbarItem(Icons.people_alt_outlined, 'Employees',
+        selectedIcon: Icon(
+          Icons.people,
+          size: 26,
+        )),
+     NavbarItem(Icons.history_outlined, 'History',
+        selectedIcon: Icon(
+          Icons.history,
+          size: 26,
+        )),
     NavbarItem(Icons.home_outlined, 'Home',
         selectedIcon: Icon(
           Icons.home,
           size: 26,
         )),
-    NavbarItem(Icons.calendar_month_outlined, 'Calendar',
+
+    NavbarItem(Icons.print_outlined, 'print',
+        selectedIcon: Icon(
+          Icons.print,
+          size: 26,
+        )),
+          NavbarItem(Icons.calendar_month_outlined, 'Calendar',
         selectedIcon: Icon(
           Icons.calendar_month_rounded,
-          size: 26,
-        )),
-         NavbarItem(Icons.history_outlined, 'History',
-        selectedIcon: Icon(
-          Icons.history,
-          size: 26,
-        )),
-
-    NavbarItem(Icons.person_outline, 'Me',
-        selectedIcon: Icon(
-          Icons.person,
           size: 26,
         )),
   ];
 
   final Map<int, Map<String, Widget>> _routes = const {
     0: {
-      '/': pagehome(),
+      '/':pageme(),
     },
     1: {
-      '/': pagecaledar(),
+      '/':pagehistory() ,
     },
     2: {
-      '/': pagehistory(),
+      '/': pagehome() ,
     },
      3: {
       '/': pageme(),
+    },
+        4: {
+      '/': pagecaledar(),
     },
   };
   List<Widget> changericon(int i) {
@@ -70,6 +78,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      
       drawer: Drawer_timesheet(),
       appBar: AppBar(
         actions:changericon(_currentIndex),
@@ -89,7 +98,7 @@ image: NetworkImage("https://images.unsplash.com/photo-1671521277748-843a8128f7b
         ),
    
       body: NavbarRouter(
-        initialIndex: 0,
+        initialIndex: 2,
         errorBuilder: (context) {
           return const Center(child: Text('Error 404'));
         },

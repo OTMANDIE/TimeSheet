@@ -1,4 +1,4 @@
-import 'package:firebase_auth/firebase_auth.dart';
+// import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:timesheet/login/sigin.dart';
 import 'package:timesheet/weget/button_name.dart';
@@ -15,38 +15,38 @@ class _LoginState extends State<Login> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
 
-  void signUserIn() async {
-    // show loading circle
-    showDialog(
-      context: context,
-      builder: (context) {
-        return const Center(
-          child: CircularProgressIndicator(
-            color: Colors.black,
-          ),
-        );
-      },
-    );
-    try {
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: _emailController.text,
-        password: _passwordController.text,
-      );
-      // pop the loading circle
-      Navigator.pop(context);
-    } on FirebaseAuthException catch (e) {
-      // pop the loading circle
-      Navigator.pop(context);
-      // WRONG EMAIL
-      if (e.code == 'user-not-found') {
-        // show error to user
-        wrongEmailMessage();
-      } else if (e.code == 'wrong-password') {
-        // show error to user
-        wrongPasswordMessage();
-      }
-    }
-  }
+  // void signUserIn() async {
+  //   // show loading circle
+  //   showDialog(
+  //     context: context,
+  //     builder: (context) {
+  //       return const Center(
+  //         child: CircularProgressIndicator(
+  //           color: Colors.black,
+  //         ),
+  //       );
+  //     },
+  //   );
+  //   try {
+  //     await FirebaseAuth.instance.signInWithEmailAndPassword(
+  //       email: _emailController.text,
+  //       password: _passwordController.text,
+  //     );
+  //     // pop the loading circle
+  //     Navigator.pop(context);
+  //   } on FirebaseAuthException catch (e) {
+  //     // pop the loading circle
+  //     Navigator.pop(context);
+  //     // WRONG EMAIL
+  //     if (e.code == 'user-not-found') {
+  //       // show error to user
+  //       wrongEmailMessage();
+  //     } else if (e.code == 'wrong-password') {
+  //       // show error to user
+  //       wrongPasswordMessage();
+  //     }
+  //   }
+  // }
 
   // wrong email message popup
   void wrongEmailMessage() {
@@ -133,7 +133,7 @@ class _LoginState extends State<Login> {
               Button(
                 data: "Log-in",
                 fun: () {
-                  signUserIn;
+                  // signUserIn;
                 },
               ),
               Text(

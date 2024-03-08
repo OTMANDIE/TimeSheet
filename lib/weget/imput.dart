@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 
 class Imput extends StatelessWidget {
-  final String name;
+  final String? name;
   final TextEditingController? controller;
-  final double vale;
+  final double? vale;
   final bool? enaled;
   final TextInputType? type;
+  final Widget? icnon;
+  final String? tx;
+  final bool? shawat ; 
 
-  Imput({Key? key, required this.name, required this.vale, this.controller, this.enaled, this.type}) : super(key: key);
+  const Imput({Key? key,  this.name, this.vale, this.controller, this.enaled, this.type, this.icnon, this.tx, this.shawat=false}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,13 +18,14 @@ class Imput extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          Padding(
-            padding: EdgeInsets.only(right: vale),
-            child: Text(
-              name,
-              textAlign: TextAlign.right,
+         if (shawat == false)
+            Padding(
+              padding: EdgeInsets.only(right: vale ?? 0),
+              child: Text(
+                name ?? '',
+                textAlign: TextAlign.right,
+              ),
             ),
-          ),
           SizedBox(height: 8), // Added spacing between Text and TextField
           Container(
             height: 35, // Adjusted height for better visibility and touch target
@@ -31,6 +35,8 @@ class Imput extends StatelessWidget {
               controller: controller,
               textAlign: TextAlign.start,
               decoration: InputDecoration(
+                prefixIcon:icnon ,
+                hintText:tx ,
                 isDense: true,
                 contentPadding: EdgeInsets.all(12), // Increased padding for better spacing
                 filled: true,
