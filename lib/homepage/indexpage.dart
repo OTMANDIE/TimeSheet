@@ -6,9 +6,11 @@ import 'package:timesheet/homepage/drawer-me.dart';
 import 'package:timesheet/homepage/viewpage/pagecaledar.dart';
 import 'package:timesheet/homepage/viewpage/pagehistory.dart';
 import 'package:timesheet/homepage/viewpage/pagehome.dart';
-import 'package:timesheet/homepage/viewpage/pageme.dart';
+import 'package:timesheet/homepage/viewpage/print.dart';
 import 'package:timesheet/login/login.dart';
 import 'package:timesheet/login/sigin.dart';
+
+import 'viewpage/people.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -51,7 +53,7 @@ class _HomePageState extends State<HomePage> {
 
   final Map<int, Map<String, Widget>> _routes = const {
     0: {
-      '/':pageme(),
+      '/':people(),
     },
     1: {
       '/':pagehistory() ,
