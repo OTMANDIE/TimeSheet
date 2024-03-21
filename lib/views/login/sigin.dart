@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:timesheet/weget/button_name.dart';
-import 'package:timesheet/weget/imput.dart';
+import 'package:timesheet/views/weget/button_name.dart';
+import 'package:timesheet/views/weget/imput.dart';
 
 class Sigin extends StatelessWidget {
   const Sigin({super.key});

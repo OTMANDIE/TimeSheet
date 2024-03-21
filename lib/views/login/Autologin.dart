@@ -1,7 +1,7 @@
 // import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:timesheet/homepage/indexpage.dart';
-import 'package:timesheet/login/login.dart';
+import 'package:timesheet/views/homepage/indexpage.dart';
+import 'package:timesheet/views/login/login.dart';
 // 
 // // class Auth extends StatelessWidget {
 //   const Auth({super.key});

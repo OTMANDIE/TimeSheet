@@ -2,13 +2,14 @@ import 'dart:math';
 import 'package:circular_profile/circular_profile.dart';
 import 'package:flutter/material.dart';
 import 'package:navbar_router/navbar_router.dart';
-import 'package:timesheet/homepage/drawer-me.dart';
-import 'package:timesheet/homepage/viewpage/pagecaledar.dart';
-import 'package:timesheet/homepage/viewpage/pagehistory.dart';
-import 'package:timesheet/homepage/viewpage/pagehome.dart';
-import 'package:timesheet/homepage/viewpage/print.dart';
-import 'package:timesheet/login/login.dart';
-import 'package:timesheet/login/sigin.dart';
+import 'package:timesheet/views/homepage/drawer-me.dart';
+import 'package:timesheet/views/homepage/viewpage/pagecaledar.dart';
+import 'package:timesheet/views/homepage/viewpage/pagehistory.dart';
+import 'package:timesheet/views/homepage/viewpage/pagehome.dart';
+import 'package:timesheet/views/homepage/viewpage/print.dart';
+import 'package:timesheet/views/login/login.dart';
+import 'package:timesheet/views/login/sigin.dart';
+import 'package:timesheet/views/page_push/project_view.dart';
 
 import 'viewpage/people.dart';
 
@@ -23,12 +24,12 @@ class _HomePageState extends State<HomePage> {
   int _currentIndex = 0;
 
   List<NavbarItem> items = [
-     NavbarItem(Icons.people_alt_outlined, 'Employees',
+    NavbarItem(Icons.people_alt_outlined, 'Employees',
         selectedIcon: Icon(
           Icons.people,
           size: 26,
         )),
-     NavbarItem(Icons.history_outlined, 'History',
+    NavbarItem(Icons.history_outlined, 'History',
         selectedIcon: Icon(
           Icons.history,
           size: 26,
@@ -38,13 +39,12 @@ class _HomePageState extends State<HomePage> {
           Icons.home,
           size: 26,
         )),
-
     NavbarItem(Icons.print_outlined, 'print',
         selectedIcon: Icon(
           Icons.print,
           size: 26,
         )),
-          NavbarItem(Icons.calendar_month_outlined, 'Calendar',
+    NavbarItem(Icons.calendar_month_outlined, 'Calendar',
         selectedIcon: Icon(
           Icons.calendar_month_rounded,
           size: 26,
@@ -53,26 +53,32 @@ class _HomePageState extends State<HomePage> {
 
   final Map<int, Map<String, Widget>> _routes = const {
     0: {
-      '/':people(),
+      '/': people(),
     },
     1: {
-      '/':pagehistory() ,
+      '/': pagehistory(),
     },
     2: {
-      '/': pagehome() ,
+      '/': pagehome(),
     },
-     3: {
+    3: {
       '/': pageme(),
     },
-        4: {
+    4: {
       '/': pagecaledar(),
     },
   };
   List<Widget> changericon(int i) {
-    if (i == 0) {
-      return [IconButton(onPressed: () {}, icon: Icon(Icons.add))];
+    if (i == 2) {
+      return [
+        IconButton(
+            onPressed: () {
+              Navigate.push(context, Add_project());
+            },
+            icon: Icon(Icons.add))
+      ];
     } else if (i == 1) {
-      return [IconButton(onPressed: () {}, icon: Icon(Icons.print))];
+      // return [IconButton(onPressed: () {}, icon: Icon(Icons.print))];
     }
     return [];
   }
@@ -80,25 +86,22 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
       drawer: Drawer_timesheet(),
       appBar: AppBar(
-        actions:changericon(_currentIndex),
+        actions: changericon(_currentIndex),
         elevation: 10,
         backgroundColor: Color.fromARGB(221, 170, 167, 167),
         title: Text("Time sheet"),
-        leading:  Container(
-            padding: EdgeInsets.all(5),
-            decoration: BoxDecoration(
-            
-            ),
-            child: CircularProfile(
-              showShadow: false,
-image: NetworkImage("https://images.unsplash.com/photo-1671521277748-843a8128f7bb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyNHx8fGVufDB8fHx8&auto=format&fit=crop&w=900&q=60"),
-),
+        leading: Container(
+          padding: EdgeInsets.all(5),
+          decoration: BoxDecoration(),
+          child: CircularProfile(
+            showShadow: false,
+            image: NetworkImage(
+                "https://images.unsplash.com/photo-1671521277748-843a8128f7bb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyNHx8fGVufDB8fHx8&auto=format&fit=crop&w=900&q=60"),
           ),
         ),
-   
+      ),
       body: NavbarRouter(
         initialIndex: 2,
         errorBuilder: (context) {

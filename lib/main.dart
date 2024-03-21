@@ -1,12 +1,12 @@
 
 import 'package:flutter/material.dart';
-import 'package:timesheet/homepage/indexpage.dart';
-import 'package:timesheet/login/login.dart';
-import 'package:timesheet/login/sigin.dart';
+import 'package:timesheet/views/homepage/indexpage.dart';
+import 'package:timesheet/views/login/login.dart';
+import 'package:timesheet/views/login/sigin.dart';
 
-import 'login/Autologin.dart';
-import 'weget/button_name.dart';
-import 'weget/imput.dart';
+import 'views/login/Autologin.dart';
+import 'views/weget/button_name.dart';
+import 'views/weget/imput.dart';
 
 void main() async{
   //  WidgetsFlutterBinding.ensureInitialized();

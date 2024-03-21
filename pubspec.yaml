@@ -40,6 +40,8 @@ dependencies:
   calendar_slider: ^0.0.3
   circular_profile: ^0.0.2
   animated_button_bar: ^1.0.0
+  easy_pie_chart: ^1.0.0
+  table_calendar: ^3.0.6
 
 dev_dependencies:
   flutter_test:
