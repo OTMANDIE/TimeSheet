@@ -1,6 +1,9 @@
 import 'package:circular_profile/circular_profile.dart';
 import 'package:flutter/material.dart';
+import 'package:timesheet/views/weget/add_task.dart';
+import 'package:timesheet/views/weget/input_select.dart';
 
+import '../weget/add_agents.dart';
 import '../weget/button_name.dart';
 import '../weget/imput.dart';
 class Add_project extends StatelessWidget {
@@ -35,15 +38,17 @@ class Add_project extends StatelessWidget {
           child: Column(
             children: [
               Row(
-                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   IconButton(
-          icon: Icon(Icons.arrow_back), 
+          icon: Icon(Icons.arrow_back_ios), 
           onPressed: () {
              Navigator.pop(context); 
            },),
+           SizedBox(
+            width: 60,
+           ),
                   Text(
-                    "Time sheet",
+                    "New Project",
                     style: TextStyle(fontSize: 40),
                   ),
                 ],
@@ -58,36 +63,35 @@ class Add_project extends StatelessWidget {
               SizedBox(
                 height: 20,
               ),
-              Imput(
+              ImputSelect(
                 name: "Project's priority",
-                vale: 370,
+                value: 290,
                 
               ),SizedBox(
                 height: 20,
               ),
               Imput(
-                name: "phone",
-                vale: 360,
-                type: TextInputType.phone,
+                name: "Date Debut",
+                vale: 330,
+                tx: "year-month-day",
+                type: TextInputType.number,
               ),SizedBox(
                 height: 20,
               ),
               Imput(
-                name: "Password",
-                vale: 340,
+                name: "Date fin",
+                vale: 350,
+                tx: "year-month-day",
+                type: TextInputType.number,
                 
               ),SizedBox(
                 height: 20,
               ),
-              Imput(
-                name: "Confirm Password",
-                vale: 280,
-                
-              ),
-             
+              Add_Agents(),
              SizedBox(
-                height: 100,
+                height: 20,
               ), 
+              Add_task(),
               Button(data: "Sign-in"),
             ],
           ),

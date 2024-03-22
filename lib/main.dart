@@ -5,6 +5,7 @@ import 'package:timesheet/views/login/login.dart';
 import 'package:timesheet/views/login/sigin.dart';
 
 import 'views/login/Autologin.dart';
+import 'views/page_push/project_view.dart';
 import 'views/weget/button_name.dart';
 import 'views/weget/imput.dart';
 
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        home:HomePage());
+        home:Add_project());
         
   }
 }

@@ -9,7 +9,7 @@ class Imput extends StatelessWidget {
   final Widget? icnon;
   final String? tx;
   final bool? shawat;
-  final bool? isSelect;
+  final double? toul;
 
   const Imput(
       {Key? key,
@@ -20,7 +20,7 @@ class Imput extends StatelessWidget {
       this.type,
       this.icnon,
       this.tx,
-      this.shawat = false, this.isSelect=false})
+      this.shawat = false, this.toul})
       : super(key: key);
 
   @override
@@ -39,32 +39,27 @@ class Imput extends StatelessWidget {
             ),
           SizedBox(height: 8), // Added spacing between Text and TextField
           Container(
-            height:
+            height:toul ??
                 35, // Adjusted height for better visibility and touch target
-            child: Row(
-              children: [
-                TextField(
-                  keyboardType: type,
-                  obscureText: enaled ?? false,
-                  controller: controller,
-                  textAlign: TextAlign.start,
-                  decoration: InputDecoration(
-                    prefixIcon: icnon,
-                    hintText: tx,
-                    isDense: true,
-                    contentPadding:
-                        EdgeInsets.all(12), // Increased padding for better spacing
-                    filled: true,
-                    fillColor:
-                        Colors.grey[200], // Added fillColor for better contrast
-                    isCollapsed: true,
-                    border: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.black),
-                    ),
-                  ),
+            child: TextField(
+              keyboardType: type,
+              obscureText: enaled ?? false,
+              controller: controller,
+              textAlign: TextAlign.start,
+              decoration: InputDecoration(
+                prefixIcon: icnon,
+                hintText: tx,
+                isDense: true,
+                contentPadding:
+                    EdgeInsets.all(12), // Increased padding for better spacing
+                filled: true,
+                fillColor:
+                    Colors.grey[200], // Added fillColor for better contrast
+                isCollapsed: true,
+                border: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.black),
                 ),
-               
-              ],
+              ),
             ),
           ),
         ],

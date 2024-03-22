@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+
 
 import 'Project.dart';
 
@@ -8,7 +8,7 @@ class User {
   int _phone;
   String _password;
   bool _isAdmin;
- late List<Project> _projects;
+ late List<Project> _projects=[];
 
   User(this._name, this._email, this._phone, this._password, {bool isAdmin = false})
       : _isAdmin = isAdmin;
