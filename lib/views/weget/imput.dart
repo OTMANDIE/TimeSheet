@@ -8,9 +8,20 @@ class Imput extends StatelessWidget {
   final TextInputType? type;
   final Widget? icnon;
   final String? tx;
-  final bool? shawat ; 
+  final bool? shawat;
+  final double? toul;
 
-  const Imput({Key? key,  this.name, this.vale, this.controller, this.enaled, this.type, this.icnon, this.tx, this.shawat=false}) : super(key: key);
+  const Imput(
+      {Key? key,
+      this.name,
+      this.vale,
+      this.controller,
+      this.enaled,
+      this.type,
+      this.icnon,
+      this.tx,
+      this.shawat = false, this.toul})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +29,7 @@ class Imput extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-         if (shawat == false)
+          if (shawat == false)
             Padding(
               padding: EdgeInsets.only(right: vale ?? 0),
               child: Text(
@@ -28,19 +39,22 @@ class Imput extends StatelessWidget {
             ),
           SizedBox(height: 8), // Added spacing between Text and TextField
           Container(
-            height: 35, // Adjusted height for better visibility and touch target
+            height:toul ??
+                35, // Adjusted height for better visibility and touch target
             child: TextField(
-              keyboardType:type ,
-              obscureText:enaled ?? false,
+              keyboardType: type,
+              obscureText: enaled ?? false,
               controller: controller,
               textAlign: TextAlign.start,
               decoration: InputDecoration(
-                prefixIcon:icnon ,
-                hintText:tx ,
+                prefixIcon: icnon,
+                hintText: tx,
                 isDense: true,
-                contentPadding: EdgeInsets.all(12), // Increased padding for better spacing
+                contentPadding:
+                    EdgeInsets.all(12), // Increased padding for better spacing
                 filled: true,
-                fillColor: Colors.grey[200], // Added fillColor for better contrast
+                fillColor:
+                    Colors.grey[200], // Added fillColor for better contrast
                 isCollapsed: true,
                 border: OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.black),

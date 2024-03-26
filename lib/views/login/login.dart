@@ -1,8 +1,8 @@
 // import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:timesheet/login/sigin.dart';
-import 'package:timesheet/weget/button_name.dart';
-import 'package:timesheet/weget/imput.dart';
+import 'package:timesheet/views/login/sigin.dart';
+import 'package:timesheet/views/weget/button_name.dart';
+import 'package:timesheet/views/weget/imput.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});

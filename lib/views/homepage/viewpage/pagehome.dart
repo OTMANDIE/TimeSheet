@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:timesheet/weget/imput.dart';
-import 'package:timesheet/weget/task_item.dart';
+import 'package:timesheet/views/weget/imput.dart';
+import 'package:timesheet/views/weget/task_item.dart';
 
 class pagehome extends StatelessWidget {
   const pagehome({super.key});
