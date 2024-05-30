@@ -15,6 +15,7 @@ import 'viewpage/people.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
+  
 
   @override
   _HomePageState createState() => _HomePageState();
@@ -51,9 +52,9 @@ class _HomePageState extends State<HomePage> {
         )),
   ];
 
-  final Map<int, Map<String, Widget>> _routes = const {
+  final Map<int, Map<String, Widget>> _routes =  {
     0: {
-      '/': people(),
+      '/': People(),
     },
     1: {
       '/': pagehistory(),
@@ -86,6 +87,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      
       drawer: Drawer_timesheet(),
       appBar: AppBar(
         actions: changericon(_currentIndex),

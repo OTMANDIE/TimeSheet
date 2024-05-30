@@ -1,50 +1,56 @@
-
-
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'Project.dart';
 
 class User {
-  String _name;
-  String _email;
-  int _phone;
-  String _password;
-  bool _isAdmin;
- late List<Project> _projects=[];
+  String? id;
+  String name;
+  String email;
+  int phone;
+  String password;
+  bool isAdmin;
+  List<Project> projects;
 
-  User(this._name, this._email, this._phone, this._password, {bool isAdmin = false})
-      : _isAdmin = isAdmin;
+  User({
+    this.id,
+    required this.name,
+    required this.email,
+    required this.phone,
+    required this.password,
+    this.isAdmin = false,
+    this.projects = const [],
+  });
 
-  // Getters
-  String get name => _name;
-
-  String get email => _email;
-
-  int get phone => _phone;
-
-  String get password => _password;
-
-  bool get isAdmin => _isAdmin;
-
-  // Setters
-  set name(String name) {
-    _name = name;
+  factory User.fromSnapshot(DocumentSnapshot snapshot) {
+    var data = snapshot.data() as Map<String, dynamic>;
+    return User(
+      id: snapshot.id,
+      name: data['name'],
+      email: data['email'],
+      phone: data['phone'],
+      password: data['password'],
+      isAdmin: data['isAdmin'],
+      projects: (data['projects'] as List)
+          .map((project) => Project.fromMap(project))
+          .toList(),
+    );
   }
 
-  set email(String email) {
-    _email = email;
+  Map<String, dynamic> toJson() {
+    return {
+      'name': name,
+      'email': email,
+      'phone': phone,
+      'password': password,
+      'isAdmin': isAdmin,
+      'projects': projects.map((project) => project.toMap()).toList(),
+    };
   }
 
-  set phone(int phone) {
-    _phone = phone;
+  void addProject(Project project) {
+    projects.add(project);
   }
 
-  set password(String password) {
-    _password = password;
-  }
-
-  // Method to configure password
-  void config_pass(String pass) {
-    _password = pass;
+  void removeProject(Project project) {
+    projects.remove(project);
   }
 }
-
-

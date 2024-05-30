@@ -1,5 +1,7 @@
 import 'package:animated_button_bar/animated_button_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:timesheet/data/Userprovider.dart';
 
 import '../../weget/task_item.dart';
 
@@ -20,10 +22,10 @@ class _pagehistoryState extends State<pagehistory> {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10),
             child: ListView.builder(
-              itemCount: 6,
+              itemCount: context.watch<UserProvider>().user?.projects.length,
               itemExtent: 140,
               itemBuilder: (BuildContext context, int index) {
-                return Center(child: Item_task(integer: index));
+                return Center(child: Item_task(project: context.watch<UserProvider>().user!.projects[index] ,));
               },
             ),
           ),

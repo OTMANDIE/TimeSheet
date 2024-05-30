@@ -1,95 +1,21 @@
 // import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:timesheet/views/homepage/indexpage.dart';
 import 'package:timesheet/views/login/sigin.dart';
 import 'package:timesheet/views/weget/button_name.dart';
 import 'package:timesheet/views/weget/imput.dart';
 
 class Login extends StatefulWidget {
-  const Login({super.key});
+  const Login({Key? key});
 
   @override
   State<Login> createState() => _LoginState();
 }
 
 class _LoginState extends State<Login> {
-  final _emailController = TextEditingController();
-  final _passwordController = TextEditingController();
-
-  // void signUserIn() async {
-  //   // show loading circle
-  //   showDialog(
-  //     context: context,
-  //     builder: (context) {
-  //       return const Center(
-  //         child: CircularProgressIndicator(
-  //           color: Colors.black,
-  //         ),
-  //       );
-  //     },
-  //   );
-  //   try {
-  //     await FirebaseAuth.instance.signInWithEmailAndPassword(
-  //       email: _emailController.text,
-  //       password: _passwordController.text,
-  //     );
-  //     // pop the loading circle
-  //     Navigator.pop(context);
-  //   } on FirebaseAuthException catch (e) {
-  //     // pop the loading circle
-  //     Navigator.pop(context);
-  //     // WRONG EMAIL
-  //     if (e.code == 'user-not-found') {
-  //       // show error to user
-  //       wrongEmailMessage();
-  //     } else if (e.code == 'wrong-password') {
-  //       // show error to user
-  //       wrongPasswordMessage();
-  //     }
-  //   }
-  // }
-
-  // wrong email message popup
-  void wrongEmailMessage() {
-    showDialog(
-      context: context,
-      builder: (context) {
-        return const AlertDialog(
-          backgroundColor: Colors.deepPurple,
-          title: Center(
-            child: Text(
-              'Incorrect Email',
-              style: TextStyle(color: Colors.white),
-            ),
-          ),
-        );
-      },
-    );
-  }
-
-  // wrong password message popup
-  void wrongPasswordMessage() {
-    showDialog(
-      context: context,
-      builder: (context) {
-        return const AlertDialog(
-          backgroundColor: Colors.deepPurple,
-          title: Center(
-            child: Text(
-              'Incorrect Password',
-              style: TextStyle(color: Colors.white),
-            ),
-          ),
-        );
-      },
-    );
-  }
-
-  @override
-  void dispose() {
-    _emailController.dispose();
-    _passwordController.dispose();
-    super.dispose();
-  }
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -99,24 +25,15 @@ class _LoginState extends State<Login> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              SizedBox(
-                height: 150,
-              ),
-              Text(
-                "Time sheet",
-                style: TextStyle(fontSize: 40),
-              ),
-              SizedBox(
-                height: 80,
-              ),
+              SizedBox(height: 150),
+              Text("Time sheet", style: TextStyle(fontSize: 40)),
+              SizedBox(height: 80),
               Imput(
                 name: "Email",
                 vale: 370,
                 controller: _emailController,
               ),
-              SizedBox(
-                height: 40,
-              ),
+              SizedBox(height: 40),
               Imput(
                 name: "Password",
                 vale: 340,
@@ -133,7 +50,7 @@ class _LoginState extends State<Login> {
               Button(
                 data: "Log-in",
                 fun: () {
-                  // signUserIn;
+                  _signInWithEmailAndPassword();
                 },
               ),
               Text(
@@ -154,5 +71,52 @@ class _LoginState extends State<Login> {
         ),
       ),
     );
+  }
+
+  void _signInWithEmailAndPassword() async {
+    String email = _emailController.text.trim();
+    String password = _passwordController.text.trim();
+
+    if (email.isNotEmpty && password.isNotEmpty) {
+      try {
+        // Show loading indicator
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Signing in...')),
+        );
+
+        // Sign in user with email and password
+        await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: email,
+          password: password,
+        );
+
+        // Hide loading indicator
+        ScaffoldMessenger.of(context).hideCurrentSnackBar();
+
+        // Navigate to the next screen after successful sign in
+        // You can replace the MaterialPageRoute with your desired screen
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => HomePage()),
+        );
+      } catch (e) {
+        // Show error message if sign in fails
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Failed to sign in: $e')),
+        );
+      }
+    } else {
+      // Show error message if email or password is empty
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Please enter email and password')),
+      );
+    }
+  }
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
   }
 }

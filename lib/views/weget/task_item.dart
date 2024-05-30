@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:timesheet/model/Project.dart';
 
 class Item_task extends StatelessWidget {
- Item_task( {super.key, required this.integer});
- final int integer;
+ Item_task( {super.key, required this.project});
 
+Project project;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -17,8 +18,8 @@ class Item_task extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.only(left: 80),
           child: ListTile(
-            title: Text("PROJECT${integer}",style: TextStyle(fontSize: 35),),
-            subtitle: Text("tasks",style: TextStyle(fontSize: 20)),
+            title: Text(project.name,style: TextStyle(fontSize: 35),),
+            subtitle: Text("tasks${project.tasks.length}",style: TextStyle(fontSize: 20)),
             leading: Icon(Icons.arrow_forward_ios,size: 60,),
           ),
         ),

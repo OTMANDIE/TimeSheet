@@ -1,26 +1,40 @@
-
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:timesheet/data/FirebaseCheck.dart';
+import 'package:timesheet/data/Userprovider.dart';
 import 'package:timesheet/views/homepage/indexpage.dart';
 import 'package:timesheet/views/login/login.dart';
-import 'package:timesheet/views/login/sigin.dart';
+import 'firebase_options.dart';
 
-import 'views/login/Autologin.dart';
-import 'views/page_push/project_view.dart';
-import 'views/weget/button_name.dart';
-import 'views/weget/imput.dart';
-
-void main() async{
-  //  WidgetsFlutterBinding.ensureInitialized();
-  // await Firebase.initializeApp();
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        home:Add_project());
-        
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => UserProvider()),
+      ],
+      child: MaterialApp(
+        home: FirebaseCheck(
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              return HomePage();
+            } else {
+              return const Login();
+            }
+          },
+        ),
+      ),
+    );
   }
 }

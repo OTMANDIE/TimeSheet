@@ -1,18 +1,43 @@
 import 'package:circular_profile/circular_profile.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:timesheet/data/Userprovider.dart';
 import 'package:timesheet/views/weget/add_task.dart';
 import 'package:timesheet/views/weget/input_select.dart';
 
 import '../weget/add_agents.dart';
 import '../weget/button_name.dart';
 import '../weget/imput.dart';
-class Add_project extends StatelessWidget {
+import 'package:timesheet/model/Project.dart';
+import 'package:timesheet/model/user.dart';
+
+class Add_project extends StatefulWidget {
   const Add_project({super.key});
+
+  @override
+  _Add_projectState createState() => _Add_projectState();
+}
+
+class _Add_projectState extends State<Add_project> {
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _protController = TextEditingController();
+  final TextEditingController _debutController = TextEditingController();
+  final TextEditingController _finController = TextEditingController();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  @override
+  void dispose() {
+    _nameController.dispose();
+    _protController.dispose();
+    _debutController.dispose();
+    _finController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:AppBar(
+      appBar: AppBar(
         elevation: 10,
         backgroundColor: Color.fromARGB(221, 170, 167, 167),
         title: Text("Time sheet"),
@@ -26,74 +51,99 @@ class Add_project extends StatelessWidget {
           ),
         ),
       ),
-      // AppBar(
-      //   // Add an AppBar with a leading icon button
-      //   leading: IconButton(
-      //     icon: Icon(Icons.arrow_back), // Use any icon you like for navigation
-      //     onPressed: () {
-      //       Navigator.pop(context); // Navigate back to the previous screen
-      //     },)),
       body: SafeArea(
         child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Row(
-                children: [
-                  IconButton(
-          icon: Icon(Icons.arrow_back_ios), 
-          onPressed: () {
-             Navigator.pop(context); 
-           },),
-           SizedBox(
-            width: 60,
-           ),
-                  Text(
-                    "New Project",
-                    style: TextStyle(fontSize: 40),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 40,
-              ),
-              Imput(
-                name: "Project name",
-                vale: 310,
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              ImputSelect(
-                name: "Project's priority",
-                value: 290,
-                
-              ),SizedBox(
-                height: 20,
-              ),
-              Imput(
-                name: "Date Debut",
-                vale: 330,
-                tx: "year-month-day",
-                type: TextInputType.number,
-              ),SizedBox(
-                height: 20,
-              ),
-              Imput(
-                name: "Date fin",
-                vale: 350,
-                tx: "year-month-day",
-                type: TextInputType.number,
-                
-              ),SizedBox(
-                height: 20,
-              ),
-              Add_Agents(),
-             SizedBox(
-                height: 20,
-              ), 
-              Add_task(),
-              Button(data: "Sign-in"),
-            ],
+          child: Form(
+            key: _formKey,
+            child: Column(
+              children: [
+                Row(
+                  children: [
+                    IconButton(
+                      icon: Icon(Icons.arrow_back_ios),
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                    ),
+                    SizedBox(
+                      width: 60,
+                    ),
+                    Text(
+                      "New Project",
+                      style: TextStyle(fontSize: 40),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 40,
+                ),
+                Imput(
+                  controller: _nameController,
+                  name: "Project name",
+                  vale: 310,
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Imput(
+                  controller: _protController,
+                  name: "Project's priority",
+                  vale: 290,
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Imput(
+                  controller: _debutController,
+                  name: "Date Debut",
+                  vale: 330,
+                  tx: "year-month-day",
+                  type: TextInputType.datetime,
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Imput(
+                  controller: _finController,
+                  name: "Date fin",
+                  vale: 350,
+                  tx: "year-month-day",
+                  type: TextInputType.datetime,
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Add_Agents(),
+                SizedBox(
+                  height: 20,
+                ),
+                Add_task(),
+                Button(
+                  data: "Add Project",
+                  fun: () {
+                    if (_formKey.currentState!.validate()) {
+                      final project = Project(
+                        name: _nameController.text,
+                        prot: _protController.text,
+                        debut: DateTime.parse(_debutController.text),
+                        fin: DateTime.parse(_finController.text),
+                        description: '',
+                      );
+                      project.addallTask(context.watch<UserProvider>().tasks);
+
+                      final userProvider = context.read<UserProvider>();
+                      final user = userProvider.user;
+
+                      if (user != null) {
+                        userProvider.addUserProject(project);
+                        userProvider.removealltasks();
+                        Navigator.pop(context);
+                      }
+                    }
+                  },
+                ),
+              ],
+            ),
           ),
         ),
       ),
